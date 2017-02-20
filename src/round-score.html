@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>round-score 1.0.1</title>
+    <link rel="stylesheet" href="round-score.css">
+    <script language="JavaScript" src="round-score-colors.js"></script>
+    <script language="JavaScript" src="round-score-utils.js"></script>
+    <script language="JavaScript" src="round-score.js"></script>
+    <script>
+        var data_discworld = [
+            {amount: 8, label: "Rincewind and Wizards"},
+            {amount: 6, label: "Witches of Lancre"},
+            {amount: 5, label: "Death Domain"},
+            {amount: 8, label: "City Watch"},
+            {amount: 6, label: "Small Gods, Pyramids etc."},
+            {amount: 5, label: "Tiffany Aching"},
+            {amount: 3, label: "Moist von Lipwig"}
+        ];
+        window.onload = function () {
+            new RoundScore("round-score-board", 150, 150, 100)
+                .load(data_discworld)
+                .show();
+        }
+    </script>
+</head>
+<body>
+<svg id="round-score-board"></svg>
+</body>
+</html>
