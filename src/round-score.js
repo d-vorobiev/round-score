@@ -5,9 +5,9 @@ function DataLine(amount, label) {
 }
 function RoundScore(svg, x, y, radius) {
     this.draw = document.getElementById(svg);
-    this.x = x; //150;
-    this.y = y; //150;
-    this.radius = radius; //100;
+    this.x = x;
+    this.y = y;
+    this.radius = radius;
     this.data = [];
     this.colors = round_score_colors;
     this.add = function (amount, label) {
@@ -32,13 +32,13 @@ function RoundScore(svg, x, y, radius) {
         this.data.sort(function (a, b) {
             return b.percent - a.percent;
         });
-		var checkPercentage = 0;
-		this.data.forEach(function (item) {
-			checkPercentage += item.percent;
-		});
-		if (checkPercentage > 100) {
-			this.data[this.data.length - 1].percent -= checkPercentage - 100;
-		}
+        var checkPercentage = 0;
+        this.data.forEach(function (item) {
+            checkPercentage += item.percent;
+        });
+        if (checkPercentage > 100) {
+            this.data[this.data.length - 1].percent -= checkPercentage - 100;
+        }
     };
     this.show = function () {
         this.recalc();
