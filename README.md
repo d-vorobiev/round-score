@@ -1,5 +1,5 @@
 # round-score
-Doughnut chart, simple and clean.
+Doughnut chart, clean and simple.
 
 ![Doughnut chart example](docs/round-score-example.png?raw=true "Doughnut chart example")
 
