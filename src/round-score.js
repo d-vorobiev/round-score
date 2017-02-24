@@ -10,6 +10,11 @@ function RoundScore(svg, x, y, radius) {
     this.radius = radius;
     this.data = [];
     this.colors = round_score_colors;
+    this.showValues = false;
+    this.displayValues = function () {
+        this.showValues = true;
+        return this;
+    };
     this.add = function (amount, label) {
         this.data[this.data.length] = new DataLine(amount, label);
         return this;
@@ -39,6 +44,17 @@ function RoundScore(svg, x, y, radius) {
         if (checkPercentage > 100) {
             this.data[this.data.length - 1].percent -= checkPercentage - 100;
         }
+    };
+    this.legendItem = function (line) {
+        var s = line.label;
+        s += " (";
+        if (this.showValues) {
+            s += line.amount;
+            s += ", ";
+        }
+        s += line.percent;
+        s += "%)";
+        return s;
     };
     this.show = function () {
         this.recalc();
@@ -80,7 +96,7 @@ function RoundScore(svg, x, y, radius) {
             text.setAttribute("id", "text" + i);
             text.setAttribute("x", xt.toString());
             text.setAttribute("y", yt.toString());
-            var s = line.label + " (" + line.amount + ", " + line.percent + "%)";
+            var s = this.legendItem(line);
             var t = document.createTextNode(s);
             text.appendChild(t);
             this.draw.appendChild(text);
