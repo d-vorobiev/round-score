@@ -10,8 +10,13 @@ function RoundScore(svg, x, y, radius) {
     this.radius = radius;
     this.data = [];
     this.colors = round_score_colors;
+    this.showLegend = false;
     this.showValues = false;
     this.showPercents = false;
+    this.displayLegend = function () {
+        this.showLegend = true;
+        return this;
+    };
     this.displayValues = function () {
         this.showValues = true;
         return this;
@@ -89,31 +94,31 @@ function RoundScore(svg, x, y, radius) {
             path.setAttribute("stroke-width", "20");
             path.setAttribute("d", arc);
             this.draw.appendChild(path);
+            if (this.showLegend) {
+                var xr = 1.75 * this.x + 1.5 * em;
+                var yr = offset + i * em;
 
-            var xr = 1.75 * this.x + 1.5 * em;
-            var yr = offset + i * em;
+                var xt = xr + em;
+                var yt = yr + (0.6 * em);
 
-            var xt = xr + em;
-            var yt = yr + (0.6 * em);
+                var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+                rect.setAttribute("id", "rect" + i);
+                rect.setAttribute("x", xr.toString());
+                rect.setAttribute("y", yr.toString());
+                rect.setAttribute("width", "15");
+                rect.setAttribute("height", "15");
+                rect.setAttribute("fill", color);
+                this.draw.appendChild(rect);
 
-            var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-            rect.setAttribute("id", "rect" + i);
-            rect.setAttribute("x", xr.toString());
-            rect.setAttribute("y", yr.toString());
-            rect.setAttribute("width", "15");
-            rect.setAttribute("height", "15");
-            rect.setAttribute("fill", color);
-            this.draw.appendChild(rect);
-
-            var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
-            text.setAttribute("id", "text" + i);
-            text.setAttribute("x", xt.toString());
-            text.setAttribute("y", yt.toString());
-            var s = this.legendItem(line);
-            var t = document.createTextNode(s);
-            text.appendChild(t);
-            this.draw.appendChild(text);
-
+                var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+                text.setAttribute("id", "text" + i);
+                text.setAttribute("x", xt.toString());
+                text.setAttribute("y", yt.toString());
+                var s = this.legendItem(line);
+                var t = document.createTextNode(s);
+                text.appendChild(t);
+                this.draw.appendChild(text);
+            }
             cursor = nextPos;
         }
     }
