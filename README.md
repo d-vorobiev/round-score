@@ -15,6 +15,7 @@ var chart_data = [
 ];
 new RoundScore("round-score-board", 150, 150, 100)
     .displayValues()
+    .displayPercents()
     .load(chart_data)
     .show();
 ```

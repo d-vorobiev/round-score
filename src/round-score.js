@@ -11,8 +11,13 @@ function RoundScore(svg, x, y, radius) {
     this.data = [];
     this.colors = round_score_colors;
     this.showValues = false;
+    this.showPercents = false;
     this.displayValues = function () {
         this.showValues = true;
+        return this;
+    };
+    this.displayPercents = function () {
+        this.showPercents = true;
         return this;
     };
     this.add = function (amount, label) {
@@ -47,13 +52,21 @@ function RoundScore(svg, x, y, radius) {
     };
     this.legendItem = function (line) {
         var s = line.label;
-        s += " (";
-        if (this.showValues) {
-            s += line.amount;
-            s += ", ";
+        var showDetails = this.showValues || this.showPercents;
+        if (showDetails) {
+            s += " (";
+            if (this.showValues) {
+                s += line.amount;
+                if (this.showPercents) {
+                    s += ", ";
+                }
+            }
+            if (this.showPercents) {
+                s += line.percent;
+                s += "%";
+            }
+            s += ")";
         }
-        s += line.percent;
-        s += "%)";
         return s;
     };
     this.show = function () {
