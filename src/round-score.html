@@ -20,6 +20,7 @@
         ];
         window.onload = function () {
             new RoundScore("round-score-board", 150, 150, 100)
+                .displayLegend()
                 .displayValues()
                 .displayPercents()
                 .load(data_discworld)
