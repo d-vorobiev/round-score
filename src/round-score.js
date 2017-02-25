@@ -3,10 +3,10 @@ function DataLine(amount, label) {
     this.label = label;
     this.percent = 0;
 }
-function RoundScore(svg, x, y) {
+function RoundScore(svg) {
     this.draw = document.getElementById(svg);
-    this.x = x;
-    this.y = y;
+    this.x = 150;
+    this.y = 150;
     this._radius = 100;
     this._width = 20;
     this.data = [];
@@ -14,6 +14,11 @@ function RoundScore(svg, x, y) {
     this.showLegend = false;
     this.showValues = false;
     this.showPercents = false;
+    this.at = function(x, y) {
+        this.x = x;
+        this.y = y;
+        return this;
+    };
     this.colors = function(colors) {
         this._colors = colors;
         return this;
