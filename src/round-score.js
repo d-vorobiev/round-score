@@ -113,7 +113,7 @@ function RoundScore(svg) {
             path.setAttribute("d", arc);
             this.draw.appendChild(path);
             if (this.showLegend) {
-                var xr = 1.75 * this.x + 1.5 * em;
+                var xr = this.x + this._radius + 1.5 * em;
                 var yr = offset + i * em;
 
                 var xt = xr + em;
