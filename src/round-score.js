@@ -14,6 +14,10 @@ function RoundScore(svg, x, y, radius) {
     this.showLegend = false;
     this.showValues = false;
     this.showPercents = false;
+    this.colors = function(colors) {
+        this.colors = colors;
+        return this;
+    };
     this.displayLegend = function () {
         this.showLegend = true;
         return this;
@@ -104,7 +108,7 @@ function RoundScore(svg, x, y, radius) {
                 var yr = offset + i * em;
 
                 var xt = xr + em;
-                var yt = yr + (0.6 * em);
+                var yt = yr + (0.7 * em);
 
                 var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
                 rect.setAttribute("id", "rect" + i);
