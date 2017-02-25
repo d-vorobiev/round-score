@@ -13,7 +13,8 @@ var chart_data = [
     {amount: 5, label: "Tiffany Aching"},
     {amount: 3, label: "Moist von Lipwig"}
 ];
-new RoundScore("round-score-board", 150, 150, 100)
+new RoundScore("round-score-board")
+    .at(150, 150)
     .radius(100)
     .width(20)
     .displayLegend()
