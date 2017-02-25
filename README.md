@@ -14,6 +14,7 @@ var chart_data = [
     {amount: 3, label: "Moist von Lipwig"}
 ];
 new RoundScore("round-score-board", 150, 150, 100)
+    .radius(100)
     .width(20)
     .displayLegend()
     .displayValues()

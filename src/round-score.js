@@ -3,19 +3,19 @@ function DataLine(amount, label) {
     this.label = label;
     this.percent = 0;
 }
-function RoundScore(svg, x, y, radius) {
+function RoundScore(svg, x, y) {
     this.draw = document.getElementById(svg);
     this.x = x;
     this.y = y;
-    this.radius = radius;
-    this.width = 20;
+    this._radius = 100;
+    this._width = 20;
     this.data = [];
-    this.colors = round_score_colors;
+    this._colors = round_score_colors;
     this.showLegend = false;
     this.showValues = false;
     this.showPercents = false;
     this.colors = function(colors) {
-        this.colors = colors;
+        this._colors = colors;
         return this;
     };
     this.displayLegend = function () {
@@ -31,7 +31,11 @@ function RoundScore(svg, x, y, radius) {
         return this;
     };
     this.width = function (width) {
-        this.width = width;
+        this._width = width;
+        return this;
+    };
+    this.radius = function (radius) {
+        this._radius = radius;
         return this;
     };
     this.add = function (amount, label) {
@@ -90,17 +94,17 @@ function RoundScore(svg, x, y, radius) {
         var cursor = 0;
         for (var i = 0; i < this.data.length; i++) {
             var line = this.data[i];
-            var color = this.colors[i];
+            var color = this._colors[i];
             var nextPos = cursor + line.percent;
             var startAngle = Math.round(cursor * 3.6);
             var endAngle = Math.round(nextPos * 3.6);
-            var arc = asSvgPathArc(this.x, this.y, this.radius, startAngle, endAngle);
+            var arc = asSvgPathArc(this.x, this.y, this._radius, startAngle, endAngle);
 
             var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
             path.setAttribute("id", "path" + i);
             path.setAttribute("fill", "none");
             path.setAttribute("stroke", color);
-            path.setAttribute("stroke-width", this.width.toString());
+            path.setAttribute("stroke-width", this._width.toString());
             path.setAttribute("d", arc);
             this.draw.appendChild(path);
             if (this.showLegend) {
