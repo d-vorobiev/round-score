@@ -8,6 +8,7 @@ function RoundScore(svg, x, y, radius) {
     this.x = x;
     this.y = y;
     this.radius = radius;
+    this.width = 20;
     this.data = [];
     this.colors = round_score_colors;
     this.showLegend = false;
@@ -23,6 +24,10 @@ function RoundScore(svg, x, y, radius) {
     };
     this.displayPercents = function () {
         this.showPercents = true;
+        return this;
+    };
+    this.width = function (width) {
+        this.width = width;
         return this;
     };
     this.add = function (amount, label) {
@@ -91,7 +96,7 @@ function RoundScore(svg, x, y, radius) {
             path.setAttribute("id", "path" + i);
             path.setAttribute("fill", "none");
             path.setAttribute("stroke", color);
-            path.setAttribute("stroke-width", "20");
+            path.setAttribute("stroke-width", this.width.toString());
             path.setAttribute("d", arc);
             this.draw.appendChild(path);
             if (this.showLegend) {
