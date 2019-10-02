@@ -1,5 +1,5 @@
 # round-score
-Doughnut chart, clean and simple.
+Doughnut chart on js, clean and simple.
 
 ![Doughnut chart example](docs/round-score-example.png?raw=true "Doughnut chart example")
 
